@@ -15,4 +15,8 @@
     <string name="load_with_view">Load with view</string>
     <string name="load_then_render">Load then render</string>
     <string name="destroy">Destroy</string>
+    <string name="options_title">CloudX</string>
+    <string name="options_general">General</string>
+    <string name="options_first_look">First Look</string>
+    <string name="options_arbiter_tpa">Arbiter/TPA</string>
 </resources>

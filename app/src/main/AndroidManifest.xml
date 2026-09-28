@@ -19,23 +19,21 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713" />
 
-        <!--
-            android:taskAffinity="" mirrors the Flutter app template's StrandHogg guard, the host
-            configuration under which CloudX-rendered fullscreen ads used to open in a task of
-            their own (CXD-4460). Kept so the demo exercises that publisher default.
-        -->
         <activity
-            android:name=".ui.MainActivity"
-            android:enableOnBackInvokedCallback="false"
+            android:name=".ui.OptionsActivity"
             android:exported="true"
-            android:launchMode="singleTask"
-            android:taskAffinity="">
+            android:theme="@style/Theme.Cloudxsdk.Options">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.GeneralActivity"
+            android:enableOnBackInvokedCallback="false"
+            android:exported="false" />
     </application>
 
 </manifest>

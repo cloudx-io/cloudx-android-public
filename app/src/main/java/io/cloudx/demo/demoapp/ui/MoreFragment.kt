@@ -11,7 +11,7 @@ import io.cloudx.demo.demoapp.R
 
 /**
  * Root screen of the More tab: lists every [MoreDestination] that did not fit in the bottom bar.
- * [MainActivity.openMoreDestination] opens the tapped screen on top of this list, so Back returns
+ * [GeneralActivity.openMoreDestination] opens the tapped screen on top of this list, so Back returns
  * here.
  */
 class MoreFragment : Fragment(R.layout.fragment_more) {
@@ -27,7 +27,7 @@ class MoreFragment : Fragment(R.layout.fragment_more) {
             toRow = { MenuRow(title = getString(it.titleRes), subtitle = null, iconRes = it.iconRes) },
         ) { destination ->
             DemoLog.i(TAG, "Selected: $destination")
-            (requireActivity() as MainActivity).openMoreDestination(destination)
+            (requireActivity() as GeneralActivity).openMoreDestination(destination)
         }
     }
 

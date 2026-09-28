@@ -2,7 +2,19 @@
 
 A sample Android app that integrates the CloudX SDK and its network adapters from their published artifacts.
 
-It shows Banner, MREC, Interstitial and Rewarded ads on the bottom tabs, and App Open, Native and the Mediation Debugger under More.
+## App flow
+
+The app opens on an Options screen that picks a demo flow:
+
+```
+Options  ──  General      ──>  the CloudX integration sample
+         ├─  First Look   (not available yet)
+         └─  Arbiter/TPA  (not available yet)
+```
+
+General shows Banner, MREC, Interstitial and Rewarded ads on the bottom tabs, and App Open, Native and the Mediation Debugger under More. First Look and Arbiter/TPA are disabled until those flows exist in this app.
+
+The Options screen closes once you pick a flow, so Back from General leaves the app. It shows again only when the app starts from scratch. It makes no SDK calls: the SDK is initialized from `DemoApplication` when the app starts.
 
 ## Samples
 

@@ -21,7 +21,7 @@ import io.cloudx.demo.demoapp.ui.screens.RewardedFragment
 import io.cloudx.sdk.CloudX
 import kotlin.reflect.KClass
 
-class MainActivity : AppCompatActivity(R.layout.activity_main) {
+class GeneralActivity : AppCompatActivity(R.layout.activity_main) {
 
     private lateinit var toolbar: Toolbar
     private lateinit var bottomNavBar: BottomNavigationView
@@ -163,7 +163,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
          * navigate a background UI.
          */
         if (supportFragmentManager.isStateSaved) {
-            DemoLog.w("MainActivity", "navigateToBottomNavItem($tag) skipped: fragment state already saved")
+            DemoLog.w(TAG, "navigateToBottomNavItem($tag) skipped: fragment state already saved")
             return
         }
 
@@ -207,6 +207,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private data class Screen(val fragmentClass: KClass<out Fragment>)
 
     private companion object {
-        const val TAG = "MainActivity"
+        const val TAG = "GeneralActivity"
     }
 }
