@@ -34,11 +34,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         setSupportActionBar(toolbar)
 
-        // Request UMP consent on first launch
-        if (savedInstanceState == null) {
-            requestConsent()
-        }
-
         val versionName = try {
             packageManager.getPackageInfo(packageName, 0).versionName
         } catch (e: Exception) {
@@ -210,19 +205,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     private data class Screen(val fragmentClass: KClass<out Fragment>)
-
-    private fun requestConsent() {
-        DemoLog.i(TAG, "Requesting UMP consent...")
-
-        ConsentHelper.requestConsentInformation(
-            activity = this,
-            debugGeography = null,
-            testDeviceHashedId = null,
-            onConsentGathered = { canRequestAds ->
-                DemoLog.i(TAG, "UMP consent complete. Can request ads: $canRequestAds")
-            }
-        )
-    }
 
     private companion object {
         const val TAG = "MainActivity"

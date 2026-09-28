@@ -12,8 +12,8 @@ import io.cloudx.sdk.CloudXSdkConfiguration
 
 /**
  * Starts the CloudX SDK. Call [initialize] once, as early as possible (this app calls it from
- * `Application.onCreate`). To check later whether it succeeded, ask the SDK with
- * `CloudX.isInitialized()`.
+ * `Application.onCreate`). It sets the user's privacy flags first, since CloudX reads them at
+ * initialization. To check later whether it succeeded, ask the SDK with `CloudX.isInitialized()`.
  *
  * Copy as-is, with your own app key in place of [DemoConfig.APP_KEY] and your own logging in place
  * of [DemoLog].
@@ -25,6 +25,11 @@ object CloudXStartup {
     fun initialize(context: Context) {
         // Verbose SDK logs help while integrating. Lower or remove this for release builds.
         CloudX.setMinLogLevel(CloudXLogLevel.VERBOSE)
+
+        // Without a consent management platform, pass the user's privacy choices before initializing.
+        // Replace these values with the choices your own consent flow collected.
+        CloudX.setHasUserConsent(true)
+        CloudX.setDoNotSell(false)
 
         CloudX.initialize(
             context = context,

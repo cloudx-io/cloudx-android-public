@@ -84,7 +84,4 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.lifecycle.runtime)
     implementation(libs.kotlinx.coroutines.android)
-
-    // Google UMP (User Messaging Platform) for consent management
-    implementation(libs.google.ump)
 }
