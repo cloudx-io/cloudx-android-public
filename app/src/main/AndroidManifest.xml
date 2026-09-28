@@ -34,6 +34,10 @@
             android:name=".ui.GeneralActivity"
             android:enableOnBackInvokedCallback="false"
             android:exported="false" />
+
+        <activity
+            android:name=".ui.FirstLookActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -8,9 +8,9 @@ import io.cloudx.demo.demoapp.DemoLog
 import io.cloudx.demo.demoapp.R
 
 /**
- * Demo-only launch screen that picks which demo flow to enter. It makes no SDK calls. General opens
- * [GeneralActivity], the CloudX integration sample. First Look and Arbiter/TPA are placeholders for
- * flows this app does not have yet, so their buttons are disabled.
+ * Demo-only launch screen that picks which demo flow to enter. It makes no SDK calls.
+ * [GeneralActivity] is the CloudX integration sample. [FirstLookActivity] demonstrates an
+ * interstitial fallback. Arbiter/TPA is a placeholder, so its button is disabled.
  *
  * The screen finishes once a flow is picked, so it only shows again when the app starts from scratch.
  */
@@ -19,11 +19,18 @@ class OptionsActivity : AppCompatActivity(R.layout.activity_options) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         findViewById<Button>(R.id.btn_general).setOnClickListener { openGeneral() }
+        findViewById<Button>(R.id.btn_first_look).setOnClickListener { openFirstLook() }
     }
 
     private fun openGeneral() {
         DemoLog.i(TAG, "Opening the General demo")
         startActivity(Intent(this, GeneralActivity::class.java))
+        finish()
+    }
+
+    private fun openFirstLook() {
+        DemoLog.i(TAG, "Opening the First Look demo")
+        startActivity(Intent(this, FirstLookActivity::class.java))
         finish()
     }
 

@@ -23,6 +23,7 @@ lifecycle = "2.7.0"
 cloudx = "+"
 # adapter-magnite 3.2.0 predates the current 1.x line and sorts above it, so "+" would pick it.
 cloudxAdapterMagnite = "1.+"
+googleMobileAds = "25.5.0"
 
 [libraries]
 # === CloudX SDK And Adapters ===
@@ -42,6 +43,7 @@ cloudx-adapter-taurusx = { module = "io.cloudx:adapter-taurusx", version.ref = "
 cloudx-adapter-unityads = { module = "io.cloudx:adapter-unityads", version.ref = "cloudx" }
 cloudx-adapter-verve = { module = "io.cloudx:adapter-verve", version.ref = "cloudx" }
 cloudx-adapter-vungle = { module = "io.cloudx:adapter-vungle", version.ref = "cloudx" }
+google-mobile-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "googleMobileAds" }
 
 # === Kotlin & Coroutines ===
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }

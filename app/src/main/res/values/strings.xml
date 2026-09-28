@@ -18,5 +18,26 @@
     <string name="options_title">CloudX</string>
     <string name="options_general">General</string>
     <string name="options_first_look">First Look</string>
+    <string name="first_look_initializing">CloudX: Initializing | AdMob: Initializing</string>
+    <string name="first_look_waiting">Waiting for initialization</string>
+    <string name="first_look_logs">First Look logs</string>
+    <string name="first_look_show_interstitial">Show Interstitial</string>
+    <string name="first_look_initialization_status">%1$s | %2$s</string>
+    <string name="first_look_cloudx_initializing">CloudX: Initializing</string>
+    <string name="first_look_cloudx_initialized">CloudX: Initialized</string>
+    <string name="first_look_cloudx_initialized_late">CloudX: Initialized late, AdMob only</string>
+    <string name="first_look_cloudx_failed">CloudX: Failed (%1$s)</string>
+    <string name="first_look_cloudx_no_response">CloudX: No response, AdMob only</string>
+    <string name="first_look_admob_initializing">AdMob: Initializing</string>
+    <string name="first_look_admob_ready">AdMob: Ready</string>
+    <string name="first_look_admob_failed">AdMob: Initialization failed</string>
+    <string name="first_look_loading">Loading interstitial…</string>
+    <string name="first_look_no_ad_ready">No ad ready; reloading</string>
+    <string name="first_look_loaded">Loaded (%1$s)</string>
+    <string name="first_look_showing">Showing (%1$s)</string>
+    <string name="first_look_closed">Closed (%1$s); loading next ad</string>
+    <string name="first_look_load_failed">Load failed (%1$s): %2$s</string>
+    <string name="first_look_show_failed">Show failed (%1$s): %2$s</string>
+    <string name="first_look_retrying">%1$s\nRetrying in %2$ds…</string>
     <string name="options_arbiter_tpa">Arbiter/TPA</string>
 </resources>
