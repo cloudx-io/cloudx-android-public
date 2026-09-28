@@ -81,14 +81,18 @@ object ConsentHelper {
                     DemoLog.i(TAG, "Showing consent form...")
                     consentForm.show(activity) { formError ->
                         if (formError != null) {
+                            // A form that fails to show stays available, so retrying here would
+                            // loop. Report the consent state as it is instead.
                             DemoLog.e(TAG, "Consent form show error: ${formError.message}")
-                        } else {
-                            DemoLog.i(TAG, "Consent form dismissed")
-                            DemoLog.i(
-                                TAG,
-                                "New consent status: ${getConsentStatusString(consentInformation.consentStatus)}"
-                            )
+                            onConsentGathered(canRequestAds(consentInformation))
+                            return@show
                         }
+
+                        DemoLog.i(TAG, "Consent form dismissed")
+                        DemoLog.i(
+                            TAG,
+                            "New consent status: ${getConsentStatusString(consentInformation.consentStatus)}"
+                        )
 
                         if (consentInformation.isConsentFormAvailable) {
                             loadAndShowConsentFormIfRequired(
