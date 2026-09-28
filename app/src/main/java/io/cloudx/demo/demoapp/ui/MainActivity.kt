@@ -202,7 +202,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     private fun showMediationDebugger() {
-        if (!CloudX.showMediationDebugger(this)) {
+        if (CloudX.isInitialized()) {
+            CloudX.showMediationDebugger(this)
+        } else {
             shortSnackbar(bottomNavBar, "CloudX SDK is not initialized yet")
         }
     }

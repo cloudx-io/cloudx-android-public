@@ -12,7 +12,5 @@ object DemoConfig {
     const val INTERSTITIAL_AD_UNIT_ID = "PwIOPhOD0KMCB_aqz8c89"
     const val APP_OPEN_AD_UNIT_ID = "BI0Whd5_o8ZIxkdHBS7X_"
     const val REWARDED_AD_UNIT_ID = "LZrqb2oz47LMG_TaaVtaR"
-
-    // TODO: Native ad unit ID for the Android sample app key.
-    const val NATIVE_AD_UNIT_ID = "Insert your Own Id"
+    const val NATIVE_AD_UNIT_ID = "K1dZFx-3JyCB4rufiYB5C"
 }
