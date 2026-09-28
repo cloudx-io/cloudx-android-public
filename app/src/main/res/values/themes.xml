@@ -8,4 +8,14 @@
     </style>
 
     <style name="Theme.Cloudxsdk" parent="Base.Theme.Cloudxsdk" />
+
+    <!-- The Options screen is blue edge to edge, so its system bars match it and use light icons. -->
+    <style name="Theme.Cloudxsdk.Options">
+        <item name="android:windowBackground">@color/options_background</item>
+        <item name="android:statusBarColor">@color/options_background</item>
+        <item name="android:navigationBarColor">@color/options_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="29">false</item>
+    </style>
 </resources>
