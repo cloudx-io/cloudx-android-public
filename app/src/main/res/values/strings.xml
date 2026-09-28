@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">CloudX SDK Demo</string>
+    <string name="banner">Banner</string>
+    <string name="mrec">MREC</string>
+    <string name="interstitial">Interstitial</string>
+    <string name="rewarded">Rewarded</string>
+    <string name="app_open">App Open</string>
+    <string name="native_ad">Native</string>
+    <string name="more">More</string>
+    <string name="menu_mediation_debugger">Mediation Debugger</string>
+    <string name="load">Load</string>
+    <string name="show">Show</string>
+    <string name="load_show">Load/Show</string>
+    <string name="stop">Stop</string>
+    <string name="load_with_view">Load with view</string>
+    <string name="load_then_render">Load then render</string>
+    <string name="destroy">Destroy</string>
+</resources>
