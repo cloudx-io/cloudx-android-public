@@ -12,6 +12,7 @@ import androidx.fragment.app.commit
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.cloudx.demo.demoapp.DemoLog
 import io.cloudx.demo.demoapp.R
+import io.cloudx.demo.demoapp.ads.CloudXStartup
 import io.cloudx.demo.demoapp.ui.screens.AppOpenFragment
 import io.cloudx.demo.demoapp.ui.screens.BannerFragment
 import io.cloudx.demo.demoapp.ui.screens.InterstitialFragment
@@ -29,6 +30,11 @@ class GeneralActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        /*
+         * Called on every create, recreation included: after process death the screen comes back
+         * with saved state but an uninitialized SDK.
+         */
+        CloudXStartup.initialize(applicationContext, listener = null)
 
         toolbar = findViewById(R.id.toolbar)
 

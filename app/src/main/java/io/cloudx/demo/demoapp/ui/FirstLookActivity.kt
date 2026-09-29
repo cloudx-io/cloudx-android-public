@@ -9,14 +9,13 @@ import com.google.android.gms.ads.MobileAds
 import io.cloudx.demo.demoapp.DemoConfig
 import io.cloudx.demo.demoapp.DemoLog
 import io.cloudx.demo.demoapp.R
+import io.cloudx.demo.demoapp.ads.CloudXStartup
 import io.cloudx.demo.demoapp.ads.firstlook.AdMobFirstLookSource
 import io.cloudx.demo.demoapp.ads.firstlook.CloudXFirstLookSource
 import io.cloudx.demo.demoapp.ads.firstlook.FirstLookEvent
 import io.cloudx.demo.demoapp.ads.firstlook.FirstLookInterstitialController
 import io.cloudx.demo.demoapp.ui.log.setupLogListView
-import io.cloudx.sdk.CloudX
 import io.cloudx.sdk.CloudXError
-import io.cloudx.sdk.CloudXInitializationConfiguration
 import io.cloudx.sdk.CloudXInitializationListener
 import io.cloudx.sdk.CloudXSdkConfiguration
 import kotlinx.coroutines.Dispatchers
@@ -88,15 +87,9 @@ class FirstLookActivity : AppCompatActivity(R.layout.activity_first_look) {
         }
     }
 
-    /*
-     * CloudXStartup already started initialization when the app launched. Calling initialize again
-     * does not start a second one: the SDK reports the outcome of the attempt that is running, and
-     * starts a new attempt only if that one failed. The listener runs on the main thread.
-     */
     private fun initializeCloudX() {
-        CloudX.initialize(
-            context = applicationContext,
-            configuration = CloudXInitializationConfiguration.builder(DemoConfig.APP_KEY).build(),
+        CloudXStartup.initialize(
+            applicationContext,
             listener = object : CloudXInitializationListener {
                 override fun onInitialized(configuration: CloudXSdkConfiguration) {
                     if (isDestroyed) return
