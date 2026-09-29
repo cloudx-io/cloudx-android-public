@@ -11,10 +11,11 @@ import io.cloudx.sdk.CloudXLogLevel
 import io.cloudx.sdk.CloudXSdkConfiguration
 
 /**
- * Starts the CloudX SDK. Each demo flow calls [initialize] when its screen opens, so nothing
- * SDK-related runs before a flow is picked. It sets the user's privacy flags first, since CloudX
- * reads them at initialization. To check later whether it succeeded, ask the SDK with
- * `CloudX.isInitialized()`.
+ * Starts the CloudX SDK. Each demo flow calls [initialize] when its screen opens. The SDK's automatic
+ * startup warm-ups run separately at process start.
+ *
+ * Sets the user's privacy flags before calling [CloudX.initialize], since CloudX reads them at
+ * initialization. To check later whether it succeeded, call [CloudX.isInitialized].
  *
  * Calling [initialize] again is safe: the SDK does not start a second initialization. It reports
  * the result of the current one, and starts a new attempt only if the last one failed.

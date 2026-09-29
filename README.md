@@ -14,7 +14,7 @@ Options  ──  General      ──>  the CloudX integration sample
 
 General shows Banner, MREC, Interstitial and Rewarded ads on the bottom tabs, and App Open, Native and the Mediation Debugger under More. First Look loads a CloudX interstitial first. It loads the AdMob test interstitial only if CloudX cannot fill or initialize. Arbiter/TPA remains disabled.
 
-The Options screen closes once you pick a flow, so Back from General or First Look leaves the app. It shows again only when the app starts from scratch. It makes no SDK calls: each flow initializes CloudX when its screen opens, so nothing SDK-related runs until you pick one.
+The Options screen closes once you pick a flow, so Back from General or First Look leaves the app. It shows again only when the app starts from scratch. It makes no SDK calls: each flow calls `CloudX.initialize` when its screen opens. The SDK's automatic startup warm-ups run separately at process start.
 
 First Look prepares another CloudX-first pass after an interstitial closes. If both sources fail, it retries with increasing delays. The AdMob app ID and interstitial ID are Google's test IDs; replace them with your own IDs before using this flow in a production app.
 
