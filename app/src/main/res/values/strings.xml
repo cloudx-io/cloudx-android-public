@@ -33,6 +33,7 @@
     <string name="first_look_admob_failed">AdMob: Initialization failed</string>
     <string name="first_look_loading">Loading interstitial…</string>
     <string name="first_look_no_ad_ready">No ad ready; reloading</string>
+    <string name="first_look_retry_pending">No ad ready; waiting for the scheduled retry</string>
     <string name="first_look_loaded">Loaded (%1$s)</string>
     <string name="first_look_showing">Showing (%1$s)</string>
     <string name="first_look_closed">Closed (%1$s); loading next ad</string>

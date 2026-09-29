@@ -27,8 +27,8 @@ import kotlin.math.min
 
 /**
  * Demo host for a CloudX-first interstitial with a lazy AdMob fallback. It waits for both SDKs,
- * builds a [FirstLookInterstitialController], retries failed loads with a capped backoff and
- * reports each step in the status lines.
+ * builds a [FirstLookInterstitialController], retries failed loads and shows with a capped
+ * backoff and reports each step in the status lines.
  */
 class FirstLookActivity : AppCompatActivity(R.layout.activity_first_look) {
 
@@ -143,11 +143,14 @@ class FirstLookActivity : AppCompatActivity(R.layout.activity_first_look) {
 
     private fun showInterstitial() {
         val source = controller?.show()
-        if (source == null) {
-            interstitialStatus.setText(R.string.first_look_no_ad_ready)
-            controller?.load()
-        } else {
-            DemoLog.i(TAG, "Requested interstitial ($source)")
+        when {
+            source != null -> DemoLog.i(TAG, "Requested interstitial ($source)")
+            // A tap must not skip the backoff of a retry that is already scheduled.
+            retryJob?.isActive == true -> interstitialStatus.setText(R.string.first_look_retry_pending)
+            else -> {
+                interstitialStatus.setText(R.string.first_look_no_ad_ready)
+                controller?.load()
+            }
         }
     }
 

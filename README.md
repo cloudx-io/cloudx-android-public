@@ -18,7 +18,7 @@ The Options screen closes once you pick a flow, so Back from General or First Lo
 
 First Look prepares another CloudX-first pass after an interstitial closes. If both sources fail, it retries with increasing delays. The AdMob app ID and interstitial ID are Google's test IDs; replace them with your own IDs before using this flow in a production app.
 
-The First Look flow lives in [`app/src/main/java/io/cloudx/demo/demoapp/ads/firstlook/`](app/src/main/java/io/cloudx/demo/demoapp/ads/firstlook/): `FirstLookInterstitialController.kt` and its two sources, `CloudXFirstLookSource.kt` and `AdMobFirstLookSource.kt`. Copy all three together. The host screen, `ui/FirstLookActivity.kt`, initializes Google Mobile Ads, waits up to 15 seconds for the CloudX initialization result, retries a failed load or show with a 2 to 60 second backoff, and connects the controller to the Show button and status text.
+The First Look flow lives in [`app/src/main/java/io/cloudx/demo/demoapp/ads/firstlook/`](app/src/main/java/io/cloudx/demo/demoapp/ads/firstlook/): `FirstLookInterstitialController.kt` and its two sources, `CloudXFirstLookSource.kt` and `AdMobFirstLookSource.kt`. Copy all three together. Both sources log through the demo's `DemoLog`; swap in your own logging when you copy them. The host screen, `ui/FirstLookActivity.kt`, initializes Google Mobile Ads, waits up to 15 seconds for the CloudX initialization result, retries a failed load or show with a 2 to 60 second backoff, and connects the controller to the Show button and status text.
 
 ## Samples
 
