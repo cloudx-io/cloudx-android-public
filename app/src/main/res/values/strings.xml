@@ -30,7 +30,6 @@
     <string name="first_look_cloudx_no_response">CloudX: No response, AdMob only</string>
     <string name="first_look_admob_initializing">AdMob: Initializing</string>
     <string name="first_look_admob_ready">AdMob: Ready</string>
-    <string name="first_look_admob_failed">AdMob: Initialization failed</string>
     <string name="first_look_loading">Loading interstitial…</string>
     <string name="first_look_no_ad_ready">No ad ready; reloading</string>
     <string name="first_look_retry_pending">No ad ready; waiting for the scheduled retry</string>

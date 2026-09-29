@@ -41,7 +41,6 @@ class FirstLookActivity : AppCompatActivity(R.layout.activity_first_look) {
     private var controller: FirstLookInterstitialController? = null
     private var retryJob: Job? = null
     private var retryCount = 0
-    private var adMobReady = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,24 +72,17 @@ class FirstLookActivity : AppCompatActivity(R.layout.activity_first_look) {
         super.onDestroy()
     }
 
+    /*
+     * Loads do not wait for this. Google asks apps to wait for the completion listener only when they
+     * use AdMob Mediation, which this fallback does not.
+     */
     private fun initializeAdMob() {
         lifecycleScope.launch(Dispatchers.IO) {
-            try {
-                MobileAds.initialize(applicationContext) {
-                    runOnUiThread {
-                        if (isDestroyed) return@runOnUiThread
-                        adMobReady = true
-                        adMobStatus = getString(R.string.first_look_admob_ready)
-                        publishInitializationStatus()
-                        controller?.onAdMobInitialized()
-                    }
-                }
-            } catch (error: Exception) {
+            MobileAds.initialize(applicationContext) {
                 runOnUiThread {
                     if (isDestroyed) return@runOnUiThread
-                    adMobStatus = getString(R.string.first_look_admob_failed)
+                    adMobStatus = getString(R.string.first_look_admob_ready)
                     publishInitializationStatus()
-                    DemoLog.e(TAG, "AdMob initialization failed: ${error.message}")
                 }
             }
         }
@@ -137,7 +129,6 @@ class FirstLookActivity : AppCompatActivity(R.layout.activity_first_look) {
         controller = newController
         interstitialStatus.setText(R.string.first_look_loading)
         showButton.isEnabled = true
-        if (adMobReady) newController.onAdMobInitialized()
         newController.load()
     }
 

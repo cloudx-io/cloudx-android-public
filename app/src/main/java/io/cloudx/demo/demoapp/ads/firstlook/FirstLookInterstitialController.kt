@@ -27,8 +27,6 @@ interface FirstLookInterstitialSource {
  * A new [load] after an ad closes starts a new CloudX-first pass.
  *
  * Pass null for [cloudX] when CloudX initialization failed, so every load goes straight to AdMob.
- * Call [onAdMobInitialized] once Google Mobile Ads finishes initializing; a fallback load requested
- * before that waits for it.
  */
 class FirstLookInterstitialController(
     private val cloudX: FirstLookInterstitialSource?,
@@ -37,8 +35,6 @@ class FirstLookInterstitialController(
 ) {
     private var loading: FirstLookSource? = null
     private var showing: FirstLookSource? = null
-    private var waitingForAdMob = false
-    private var adMobInitialized = false
     private var disposed = false
 
     init {
@@ -55,22 +51,13 @@ class FirstLookInterstitialController(
         }
 
     fun load() {
-        if (disposed || showing != null || loading != null || waitingForAdMob || readySource != null) return
+        if (disposed || showing != null || loading != null || readySource != null) return
 
         if (cloudX == null) {
             loadAdMob()
         } else {
             loading = FirstLookSource.CLOUDX
             cloudX.load()
-        }
-    }
-
-    fun onAdMobInitialized() {
-        if (disposed) return
-        adMobInitialized = true
-        if (waitingForAdMob) {
-            waitingForAdMob = false
-            loadAdMob()
         }
     }
 
@@ -96,10 +83,6 @@ class FirstLookInterstitialController(
 
     private fun loadAdMob() {
         if (disposed || adMob.isReady) return
-        if (!adMobInitialized) {
-            waitingForAdMob = true
-            return
-        }
         loading = FirstLookSource.ADMOB
         adMob.load()
     }
