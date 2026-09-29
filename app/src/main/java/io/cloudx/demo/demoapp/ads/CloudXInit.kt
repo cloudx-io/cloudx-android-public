@@ -22,9 +22,9 @@ import io.cloudx.sdk.CloudXSdkConfiguration
  * Copy as-is, with your own app key in place of [DemoConfig.APP_KEY] and your own logging in place
  * of [DemoLog].
  */
-object CloudXStartup {
+object CloudXInit {
 
-    private const val TAG = "CloudXStartup"
+    private const val TAG = "CloudXInit"
 
     /** [listener] gets the result on the main thread; pass null when the caller does not need it. */
     fun initialize(context: Context, listener: CloudXInitializationListener?) {

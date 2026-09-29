@@ -9,7 +9,7 @@ import com.google.android.gms.ads.MobileAds
 import io.cloudx.demo.demoapp.DemoConfig
 import io.cloudx.demo.demoapp.DemoLog
 import io.cloudx.demo.demoapp.R
-import io.cloudx.demo.demoapp.ads.CloudXStartup
+import io.cloudx.demo.demoapp.ads.CloudXInit
 import io.cloudx.demo.demoapp.ads.firstlook.AdMobFirstLookSource
 import io.cloudx.demo.demoapp.ads.firstlook.CloudXFirstLookSource
 import io.cloudx.demo.demoapp.ads.firstlook.FirstLookEvent
@@ -88,7 +88,7 @@ class FirstLookActivity : AppCompatActivity(R.layout.activity_first_look) {
     }
 
     private fun initializeCloudX() {
-        CloudXStartup.initialize(
+        CloudXInit.initialize(
             applicationContext,
             listener = object : CloudXInitializationListener {
                 override fun onInitialized(configuration: CloudXSdkConfiguration) {

@@ -26,7 +26,7 @@ Each ad format is one self-contained class in [`app/src/main/java/io/cloudx/demo
 
 | File | Shows |
 |---|---|
-| `CloudXStartup.kt` | SDK initialization and privacy flags |
+| `CloudXInit.kt` | SDK initialization and privacy flags |
 | `BannerAd.kt` | 320x50 banner |
 | `MrecAd.kt` | 300x250 MREC |
 | `InterstitialAd.kt` | Interstitial |
