@@ -16,38 +16,52 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/options_first_look" />
+            app:title="@string/options_arbiter_tpa" />
 
         <TextView
-            android:id="@+id/first_look_initialization_status"
+            android:id="@+id/arbiter_initialization_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
             android:text="@string/sdk_init_initializing" />
 
         <TextView
-            android:id="@+id/first_look_interstitial_status"
+            android:id="@+id/arbiter_round_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/arbiter_round_not_run" />
+
+        <TextView
+            android:id="@+id/arbiter_interstitial_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="@string/sdk_init_waiting" />
 
+        <TextView
+            android:id="@+id/arbiter_revenue_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/arbiter_revenue_none" />
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/first_look_log_list"
+            android:id="@+id/arbiter_log_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:contentDescription="@string/first_look_logs"
+            android:contentDescription="@string/arbiter_logs"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <Button
-            android:id="@+id/btn_first_look_show"
+            android:id="@+id/btn_arbiter_show"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:enabled="false"
-            android:text="@string/first_look_show_interstitial" />
+            android:text="@string/arbiter_show_interstitial" />
     </LinearLayout>
 
 </FrameLayout>

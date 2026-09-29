@@ -37,6 +37,10 @@
         <activity
             android:name=".ui.FirstLookActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".ui.ArbiterActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -10,7 +10,8 @@ import io.cloudx.demo.demoapp.R
 /**
  * Demo-only launch screen that picks which demo flow to enter. It makes no SDK calls.
  * [GeneralActivity] is the CloudX integration sample. [FirstLookActivity] demonstrates an
- * interstitial fallback. Arbiter/TPA is a placeholder, so its button is disabled.
+ * interstitial fallback. [ArbiterActivity] loads CloudX and AdMob in parallel and lets Trusted
+ * Arbiter pick the interstitial to show.
  *
  * The screen finishes once a flow is picked, so it only shows again when the app starts from scratch.
  */
@@ -20,6 +21,7 @@ class OptionsActivity : AppCompatActivity(R.layout.activity_options) {
         super.onCreate(savedInstanceState)
         findViewById<Button>(R.id.btn_general).setOnClickListener { openGeneral() }
         findViewById<Button>(R.id.btn_first_look).setOnClickListener { openFirstLook() }
+        findViewById<Button>(R.id.btn_arbiter_tpa).setOnClickListener { openArbiter() }
     }
 
     private fun openGeneral() {
@@ -31,6 +33,12 @@ class OptionsActivity : AppCompatActivity(R.layout.activity_options) {
     private fun openFirstLook() {
         DemoLog.i(TAG, "Opening the First Look demo")
         startActivity(Intent(this, FirstLookActivity::class.java))
+        finish()
+    }
+
+    private fun openArbiter() {
+        DemoLog.i(TAG, "Opening the Arbiter/TPA demo")
+        startActivity(Intent(this, ArbiterActivity::class.java))
         finish()
     }
 

@@ -18,18 +18,18 @@
     <string name="options_title">CloudX</string>
     <string name="options_general">General</string>
     <string name="options_first_look">First Look</string>
-    <string name="first_look_initializing">CloudX: Initializing | AdMob: Initializing</string>
-    <string name="first_look_waiting">Waiting for initialization</string>
+    <string name="sdk_init_initializing">CloudX: Initializing | AdMob: Initializing</string>
+    <string name="sdk_init_waiting">Waiting for initialization</string>
     <string name="first_look_logs">First Look logs</string>
     <string name="first_look_show_interstitial">Show Interstitial</string>
-    <string name="first_look_initialization_status">%1$s | %2$s</string>
-    <string name="first_look_cloudx_initializing">CloudX: Initializing</string>
-    <string name="first_look_cloudx_initialized">CloudX: Initialized</string>
-    <string name="first_look_cloudx_initialized_late">CloudX: Initialized late, AdMob only</string>
-    <string name="first_look_cloudx_failed">CloudX: Failed (%1$s)</string>
-    <string name="first_look_cloudx_no_response">CloudX: No response, AdMob only</string>
-    <string name="first_look_admob_initializing">AdMob: Initializing</string>
-    <string name="first_look_admob_ready">AdMob: Ready</string>
+    <string name="sdk_init_status">%1$s | %2$s</string>
+    <string name="sdk_init_cloudx_initializing">CloudX: Initializing</string>
+    <string name="sdk_init_cloudx_initialized">CloudX: Initialized</string>
+    <string name="sdk_init_cloudx_initialized_late">CloudX: Initialized late, AdMob only</string>
+    <string name="sdk_init_cloudx_failed">CloudX: Failed (%1$s)</string>
+    <string name="sdk_init_cloudx_no_response">CloudX: No response, AdMob only</string>
+    <string name="sdk_init_admob_initializing">AdMob: Initializing</string>
+    <string name="sdk_init_admob_ready">AdMob: Ready</string>
     <string name="first_look_loading">Loading interstitial…</string>
     <string name="first_look_no_ad_ready">No ad ready; reloading</string>
     <string name="first_look_retry_pending">No ad ready; waiting for the scheduled retry</string>
@@ -40,4 +40,27 @@
     <string name="first_look_show_failed">Show failed (%1$s): %2$s</string>
     <string name="first_look_retrying">%1$s\nRetrying in %2$ds…</string>
     <string name="options_arbiter_tpa">Arbiter/TPA</string>
+    <string name="arbiter_logs">Arbiter/TPA logs</string>
+    <string name="arbiter_show_interstitial">Show Interstitial</string>
+    <string name="arbiter_round_not_run">Arbiter: not run yet</string>
+    <string name="arbiter_round_winner">Arbiter: %1$s (%2$s)</string>
+    <string name="arbiter_round_none">Arbiter: no winner (%1$s)</string>
+    <string name="arbiter_round_no_candidates">Arbiter: no candidates, nothing to arbitrate</string>
+    <string name="arbiter_round_in_progress">Arbiter: round in progress</string>
+    <plurals name="arbiter_bids">
+        <item quantity="one">%d bid</item>
+        <item quantity="other">%d bids</item>
+    </plurals>
+    <string name="arbiter_loading">Loading CloudX and AdMob…</string>
+    <string name="arbiter_loaded">Loaded (%1$s)</string>
+    <string name="arbiter_load_failed">Load failed (%1$s): %2$s</string>
+    <string name="arbiter_no_fill">Neither platform filled</string>
+    <string name="arbiter_showing">Showing (%1$s)</string>
+    <string name="arbiter_show_failed">Show failed (%1$s): %2$s</string>
+    <string name="arbiter_closed">Closed (%1$s); loading the next round</string>
+    <string name="arbiter_retrying">%1$s\nRetrying in %2$ds…</string>
+    <string name="arbiter_retry_pending">No winner prepared; waiting for the scheduled retry</string>
+    <string name="arbiter_no_winner_reloading">No winner prepared; reloading</string>
+    <string name="arbiter_revenue_none">Revenue -> CloudX: no AdMob paid event yet</string>
+    <string name="arbiter_revenue_reported">Revenue -> CloudX: %1$.6f %2$s (accepted=%3$b)</string>
 </resources>
