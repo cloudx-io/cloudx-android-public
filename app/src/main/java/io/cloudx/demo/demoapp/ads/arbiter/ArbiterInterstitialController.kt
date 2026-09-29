@@ -39,12 +39,6 @@ sealed interface ArbiterEvent {
     data class ShowFailed(val platform: CloudXArbiterPlatform, val message: String) : ArbiterEvent
     data class Closed(val platform: CloudXArbiterPlatform) : ArbiterEvent
     data class Clicked(val platform: CloudXArbiterPlatform) : ArbiterEvent
-
-    /**
-     * An AdMob paid event forwarded to CloudX, with what [CloudX.reportRevenueData] returned. It is
-     * the call's result, not proof that the price was kept: CloudX does not keep a revenue of 0 as
-     * the AdMob bid's price, and 0 is what Google's test ad units pay.
-     */
     data class RevenueReported(val revenue: Double, val currencyCode: String, val accepted: Boolean) : ArbiterEvent
 }
 
