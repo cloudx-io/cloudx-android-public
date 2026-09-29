@@ -75,6 +75,7 @@ dependencies {
     implementation(libs.cloudx.adapter.unityads)
     implementation(libs.cloudx.adapter.verve)
     implementation(libs.cloudx.adapter.vungle)
+    implementation(libs.google.mobile.ads)
 
     implementation(libs.core.ktx)
     implementation(libs.fragment.ktx)
