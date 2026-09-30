@@ -26,7 +26,7 @@ AdMob bids carry no price. CloudX prices them from the revenue the app reports a
 
 To integrate it, copy [`app/src/main/java/io/cloudx/demo/demoapp/ads/arbiter/ArbiterInterstitialController.kt`](app/src/main/java/io/cloudx/demo/demoapp/ads/arbiter/ArbiterInterstitialController.kt). It holds every load, show, arbiter and revenue call of the flow and logs through the demo's `DemoLog`; swap in your own logging when you copy it. The host screen, `ui/ArbiterActivity.kt`, initializes both SDKs the same way as First Look, retries with a 2 to 60 second backoff when neither platform fills or a show fails, and connects the controller to the Show button and status text.
 
-Trusted Arbiter has to be enabled for your app in the CloudX dashboard. Until it is, the SDK decides a round with more than one bid locally: the highest comparable price wins, and an AdMob bid with no revenue history yet cannot win against CloudX.
+When the arbiter service is not available for your app, the SDK decides a round with more than one bid locally: the highest comparable price wins, and an AdMob bid with no revenue history yet cannot win against CloudX.
 
 ## Samples
 

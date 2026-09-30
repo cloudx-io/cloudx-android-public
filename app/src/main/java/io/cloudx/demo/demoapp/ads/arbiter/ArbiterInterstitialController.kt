@@ -157,10 +157,6 @@ class ArbiterInterstitialController(
         }
     }
 
-    /** The platform [show] would use now, or null when no winner is prepared. */
-    val preparedWinner: CloudXArbiterPlatform?
-        get() = nextWinner
-
     /** True from a show call until that ad closes or fails to show. */
     val isShowing: Boolean
         get() = showing
