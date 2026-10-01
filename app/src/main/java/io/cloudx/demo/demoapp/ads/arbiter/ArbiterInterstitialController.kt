@@ -184,19 +184,24 @@ class ArbiterInterstitialController(
     fun load() {
         if (disposed || arbiterInFlight || showing) return
 
-        val cloudX = cloudXInterstitial
-        if (cloudX != null && !cloudXReady && !cloudXLoading) {
+        /*
+         * Both settled flags are cleared before either load starts: CloudX can report a failure
+         * inside its own load call, and the round must not then run on the other platform's result
+         * from the previous round.
+         */
+        val cloudXToLoad = cloudXInterstitial?.takeIf { !cloudXReady && !cloudXLoading }
+        val loadsAdMob = !adMobReady && !adMobLoading
+        if (cloudXToLoad != null) {
             loadedCloudXAd = null
             cloudXSettled = false
             cloudXLoading = true
-            cloudX.load()
         }
-
-        if (!adMobReady && !adMobLoading) {
+        if (loadsAdMob) {
             adMobSettled = false
             adMobLoading = true
-            loadAdMob()
         }
+        cloudXToLoad?.load()
+        if (loadsAdMob) loadAdMob()
 
         /*
          * Both platforms may still hold their fills with no winner stored, after a round with no
