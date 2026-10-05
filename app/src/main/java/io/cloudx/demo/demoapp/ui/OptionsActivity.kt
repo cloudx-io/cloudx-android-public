@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import io.cloudx.demo.demoapp.DemoConfig
 import io.cloudx.demo.demoapp.DemoLog
 import io.cloudx.demo.demoapp.R
 
@@ -38,7 +39,12 @@ class OptionsActivity : AppCompatActivity(R.layout.activity_options) {
 
     private fun openArbiter() {
         DemoLog.i(TAG, "Opening the Arbiter/TPA demo")
-        startActivity(Intent(this, ArbiterActivity::class.java))
+        val arbiterIntent = Intent(this, ArbiterActivity::class.java)
+        // ArbiterActivity is not exported, so the QA launch extra reaches it only through this screen.
+        intent.getStringExtra(DemoConfig.EXTRA_ADMOB_MANUAL_REVENUE_PER_IMPRESSION_USD)?.let {
+            arbiterIntent.putExtra(DemoConfig.EXTRA_ADMOB_MANUAL_REVENUE_PER_IMPRESSION_USD, it)
+        }
+        startActivity(arbiterIntent)
         finish()
     }
 

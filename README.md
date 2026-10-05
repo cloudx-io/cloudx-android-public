@@ -22,11 +22,20 @@ The First Look flow lives in [`app/src/main/java/io/cloudx/demo/demoapp/ads/firs
 
 Arbiter/TPA (Trusted Arbiter, third-party arbitration) is the other way to run CloudX next to AdMob. Both interstitials load in parallel. Once both have settled, loaded or failed, the loaded ones become bids and `CloudX.arbiter` returns the platform to show. The winner is stored, so Show displays it with no network call; if no winner is prepared, a real app carries on without an ad. After the ad closes, each platform without a fill reloads, one that still holds an ad keeps it, and a new round runs. The SDK owns the arbiter's timeout and fallback, so the demo neither times the call out nor compares prices: a single bid wins without a service call.
 
-AdMob bids carry no price. CloudX prices them from the revenue the app reports after each AdMob impression, so every AdMob paid event goes to `CloudX.reportRevenueData`. That call is a required part of the integration. The status line shows what it returned; Google's test ad unit pays 0, which CloudX does not keep as a price. If CloudX does not initialize, AdMob is the only candidate and wins each round without an arbiter call. The flow covers the interstitial; rewarded follows the same controller with the rewarded calls, while banner, MREC and native arbitrate first and then render the winner, which this demo does not show. The pattern is documented in the [Trusted Arbiter guide](https://docs.cloudx.io/en/android/trusted-arbiter).
+Unless a manual price is set (see below), AdMob bids carry no price. CloudX prices them from the revenue the app reports after each AdMob impression, so every AdMob paid event goes to `CloudX.reportRevenueData`. That call is a required part of the integration. The status line shows what it returned; Google's test ad unit pays 0, which CloudX does not keep as a price. If CloudX does not initialize, AdMob is the only candidate and wins each round without an arbiter call. The flow covers the interstitial; rewarded follows the same controller with the rewarded calls, while banner, MREC and native arbitrate first and then render the winner, which this demo does not show. The pattern is documented in the [Trusted Arbiter guide](https://docs.cloudx.io/en/android/trusted-arbiter).
 
 To integrate it, copy [`app/src/main/java/io/cloudx/demo/demoapp/ads/arbiter/ArbiterInterstitialController.kt`](app/src/main/java/io/cloudx/demo/demoapp/ads/arbiter/ArbiterInterstitialController.kt). It holds every load, show, arbiter and revenue call of the flow and logs through the demo's `DemoLog`; swap in your own logging when you copy it. The host screen, `ui/ArbiterActivity.kt`, initializes both SDKs the same way as First Look, retries with a 2 to 60 second backoff when neither platform fills or a show fails, and connects the controller to the Show button and status text.
 
-When the arbiter service is not available for your app, the SDK decides a round with more than one bid locally: the highest comparable price wins, and an AdMob bid with no revenue history yet cannot win against CloudX.
+A round with more than one bid goes to the arbiter service. There, an AdMob bid with no revenue history yet wins without a price comparison, so that its first impression gives CloudX a price to work from. Google's test ad unit never builds that history, so with the test IDs a round where both platforms fill goes to AdMob without comparing prices. When the arbiter service is not available for your app, the SDK decides the round locally instead: the highest comparable price wins, and an AdMob bid with no revenue history yet cannot win against CloudX.
+
+To run a round that does compare prices, give the AdMob bid a manual price for one launch with the `DemoApp.AdMobManualRevenuePerImpressionUSD` string extra, in USD per impression, and then pick Arbiter/TPA:
+
+```sh
+adb shell am start -S -n io.cloudx.sample/io.cloudx.demo.demoapp.ui.OptionsActivity \
+  --es DemoApp.AdMobManualRevenuePerImpressionUSD 0.5
+```
+
+The controller passes it to the bid as `manualRevenuePerImpressionUSD`. It is a testing aid: the Trusted Arbiter guide recommends a manual price in a production app only when it comes from pre-bid ILRD.
 
 ## Samples
 
