@@ -51,9 +51,10 @@ sealed interface ArbiterEvent {
  * and the app carries on without an ad. Call [load] after an ad closes to start the next round; it
  * reloads only the platform that has no fill.
  *
- * AdMob bids carry no price. CloudX prices them from the revenue this controller forwards after
- * every AdMob impression through [CloudX.reportRevenueData], so that forwarding is a required part
- * of the integration, not analytics.
+ * AdMob bids carry no price unless [adMobManualRevenuePerImpressionUSD] sets one. CloudX prices them
+ * from the revenue this controller forwards after every AdMob impression through
+ * [CloudX.reportRevenueData], so that forwarding is a required part of the integration, not
+ * analytics. The demo sets a manual price only from a launch extra, for testing.
  *
  * Pass false for [cloudXAvailable] when CloudX initialization failed or did not answer. AdMob is then
  * the only candidate and wins each round here, without a call into an SDK that is not initialized.
@@ -62,6 +63,7 @@ class ArbiterInterstitialController(
     activity: Activity,
     cloudXAdUnitId: String,
     private val adMobAdUnitId: String,
+    private val adMobManualRevenuePerImpressionUSD: Double?,
     cloudXAvailable: Boolean,
     private val onEvent: (ArbiterEvent) -> Unit,
 ) {
@@ -133,6 +135,12 @@ class ArbiterInterstitialController(
         CloudX.createInterstitial(appContext, cloudXAdUnitId).also { it.listener = cloudXListener }
     } else {
         null
+    }
+
+    init {
+        adMobManualRevenuePerImpressionUSD?.let {
+            DemoLog.i(TAG, "AdMob bids carry a manual price of $it USD per impression")
+        }
     }
 
     private val adMobCallback = object : FullScreenContentCallback() {
@@ -267,7 +275,13 @@ class ArbiterInterstitialController(
             if (cloudXAd != null && cloudXReady) add(CloudXArbiterBid.cloudX(cloudXAd))
             val ad = adMobAd
             if (ad != null && adMobReady) {
-                add(CloudXArbiterBid.adMob(adUnitId = adMobAdUnitId, networkName = adSourceName(ad) ?: "admob"))
+                add(
+                    CloudXArbiterBid.adMob(
+                        adUnitId = adMobAdUnitId,
+                        networkName = adSourceName(ad) ?: "admob",
+                        manualRevenuePerImpressionUSD = adMobManualRevenuePerImpressionUSD,
+                    ),
+                )
             }
         }
         if (bids.isEmpty()) {

@@ -122,6 +122,7 @@ class ArbiterActivity : AppCompatActivity(R.layout.activity_arbiter) {
             activity = this,
             cloudXAdUnitId = DemoConfig.INTERSTITIAL_AD_UNIT_ID,
             adMobAdUnitId = DemoConfig.ADMOB_INTERSTITIAL_TEST_AD_UNIT_ID,
+            adMobManualRevenuePerImpressionUSD = DemoConfig.adMobManualRevenuePerImpressionUSD(intent),
             cloudXAvailable = cloudXAvailable,
             onEvent = ::onArbiterEvent,
         )

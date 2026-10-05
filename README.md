@@ -26,7 +26,16 @@ AdMob bids carry no price. CloudX prices them from the revenue the app reports a
 
 To integrate it, copy [`app/src/main/java/io/cloudx/demo/demoapp/ads/arbiter/ArbiterInterstitialController.kt`](app/src/main/java/io/cloudx/demo/demoapp/ads/arbiter/ArbiterInterstitialController.kt). It holds every load, show, arbiter and revenue call of the flow and logs through the demo's `DemoLog`; swap in your own logging when you copy it. The host screen, `ui/ArbiterActivity.kt`, initializes both SDKs the same way as First Look, retries with a 2 to 60 second backoff when neither platform fills or a show fails, and connects the controller to the Show button and status text.
 
-When the arbiter service is not available for your app, the SDK decides a round with more than one bid locally: the highest comparable price wins, and an AdMob bid with no revenue history yet cannot win against CloudX.
+A round with more than one bid goes to the arbiter service. There, an AdMob bid with no revenue history yet wins without a price comparison, so that its first impression gives CloudX a price to work from. Google's test ad unit never builds that history, so with the test IDs a round where both platforms fill goes to AdMob without comparing prices. When the arbiter service is not available for your app, the SDK decides the round locally instead: the highest comparable price wins, and an AdMob bid with no revenue history yet cannot win against CloudX.
+
+To run a round that does compare prices, give the AdMob bid a manual price for one launch with the `DemoApp.AdMobManualRevenuePerImpressionUSD` string extra, in USD per impression, and then pick Arbiter/TPA:
+
+```sh
+adb shell am start -S -n io.cloudx.sample/io.cloudx.demo.demoapp.ui.OptionsActivity \
+  --es DemoApp.AdMobManualRevenuePerImpressionUSD 0.5
+```
+
+The controller passes it to the bid as `manualRevenuePerImpressionUSD`. It is a testing aid: the Trusted Arbiter guide recommends a manual price in a production app only when it comes from pre-bid ILRD.
 
 ## Samples
 
